@@ -18,3 +18,19 @@ data Nat = Z | S Nat
 data [a] = [] | (:) a [a]
 data List a = [] | (::) a (List a)
 ```
+
+- Idris: Functions can be applied to data types
+
+Exercise 1. Define the Idris function (!!) for extracting the nth element from a list (use zero for first element).
+
+```Idris
+(++) : {a : Type} -> List a -> List a -> List a
+[]        ++ ys = ys
+(x :: xs) ++ ys = x :: (xs ++ ys)
+
+data Nat : Type where
+   Z : Nat
+   S : Nat -> Nat
+
+
+```
