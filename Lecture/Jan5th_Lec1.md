@@ -7,7 +7,7 @@ Idris only accepts programs that terminate.
 As a result, Idris is useful for proof.
 
 ##### Idris vs. Haskell:
-- Idris: GADT (Generalized Algebraic Data Type) is more general.
+I. Idris: GADT (Generalized Algebraic Data Type) is more general.
 
 e.g., Haskell
 
@@ -19,7 +19,7 @@ data [a] = [] | (:) a [a]
 data List a = [] | (::) a (List a)
 ```
 
-- Idris: Functions can be applied to data types
+II. Idris: Functions can be applied to data types
 
 Exercise 1. Define the Idris function (!!) for extracting the nth element from a list (use zero for first element).
 
@@ -31,6 +31,10 @@ Exercise 1. Define the Idris function (!!) for extracting the nth element from a
 data Nat : Type where
    Z : Nat
    S : Nat -> Nat
+```
 
-
+III. Total functions
+Always add the line below at the top of all Idris modules, since every program written in Idris should be terminated.
+```Idris
+%default total
 ```
