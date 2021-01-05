@@ -9,6 +9,8 @@ As a result, Idris is useful for proof.
 ##### Idris vs. Haskell:
 - Idris: GADT (Generalized Algebraic Data Type) is more general.
 
+e.g., Haskell
+
 ```Haskell
 data Bool = True | False
 data Nat = Z | S Nat
