@@ -1,12 +1,12 @@
-January 5th, 2021
-Lecture 1
+# CS 582 W21 Programming Languages II
+## Lecture 1 - Course Overview & Idris Intro
 
-#### Idris:
+### Idris:
 Idris is more expressive than Haskell. Two main differences include 1) Dependent Type, and 2) Termination.
 Idris only accepts programs that terminate.
 As a result, Idris is useful for proof.
 
-##### Idris vs. Haskell:
+#### Idris vs. Haskell:
 I. Idris: GADT (Generalized Algebraic Data Type) is more general.
 
 e.g., Haskell
