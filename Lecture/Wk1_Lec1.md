@@ -38,3 +38,7 @@ Always add the line below at the top of all Idris modules, since every program w
 ```Idris
 %default total
 ```
+## Lecture 2 - Idris vs. Haskell (cont.) (01/07/2021)
+### Type Constructure
+- Haskell: a function that maps types to types
+- Idris: a function that maps *types and values* to types
