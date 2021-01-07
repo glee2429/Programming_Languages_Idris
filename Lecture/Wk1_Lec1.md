@@ -65,7 +65,7 @@ In other words, in order to determine the result type, we need to **evaluate** t
 
 ### Overloading Functions
 
-#### Exercise: Implement the function *inc* for incrementing values of type Single b.
+#### Exercise 1: Implement the function *inc* for incrementing values of type Single b.
 
 ```Idris
 inc : (b : Bool) -> Single b -> Single b
@@ -74,3 +74,34 @@ inc False []      = []
 inc False (x::xs) = x+1::inc False xs
 ```
 Basically, this function maps Single b into a list. 
+
+### Vectors
+-- This is when "dependent type" makes things interesting 
+
+```Idris
+data Vect : Nat -> Type -> Type where
+      Nil : Vect Z a
+      (::): a -> Vect n a -> Vect (S n) a
+```
+
+#### Exercise 2: Define the Idris functions *eqNat* and *eqList* for comparing two natural numbers and two lists of values.
+```Idris
+data Nat : Type where
+     Z : Nat
+     S : Nat -> Nat
+```
+Using Induction, eqNat can be expressed as follows:
+```Idris
+eqNat : Nat -> Nat -> Bool
+eqNat Z Z = True
+eqNat (S n) (S m) = eqNat n m
+eqNat _ _ = False
+```
+
+```Idris 
+eqList : Eq a => List a -> List a -> Bool
+eqList [] [] = True
+eqList (x::xs) (y::ys) = x == y && eqList xs ys 
+eqList _ _ = False
+```
+
