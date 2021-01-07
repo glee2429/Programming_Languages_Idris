@@ -13,9 +13,9 @@ e.g., Haskell
 
 ```Haskell
 data Bool = True | False
-data Nat = Z | S Nat
+data Nat  = Z | S Nat
 
-data [a] = [] | (:) a [a]
+data [a]    = [] | (:) a [a]
 data List a = [] | (::) a (List a)
 ```
 
@@ -29,8 +29,8 @@ Exercise 1. Define the Idris function (!!) for extracting the nth element from a
 (x :: xs) ++ ys = x :: (xs ++ ys)
 
 data Nat : Type where
-   Z : Nat
-   S : Nat -> Nat
+       Z : Nat
+       S : Nat -> Nat
 ```
 
 III. Total functions
