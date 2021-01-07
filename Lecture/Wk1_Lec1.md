@@ -39,6 +39,38 @@ Always add the line below at the top of all Idris modules, since every program w
 %default total
 ```
 ## Lecture 2 - Idris vs. Haskell (cont.) (01/07/2021)
-### Type Constructure
+### Type Constructor
 - Haskell: a function that maps types to types
 - Idris: a function that maps *types and values* to types
+
+### Dependent Types
+```Idris
+Single : Bool -> Type
+Single True   =  Nat
+Single False  =  List Nat
+```
+
+```Idris
+mkSingle : (b : Bool) -> Nat -> Single b
+mkSingle True  x = x
+mkSingle False x = [x]
+```
+
+```Idris
+x : Single True
+x = 4
+```
+In this function, "Single" is a *type constructor* and "Bool" is a *value argument*. Depends on the argument value, result types will be either "Nat" or "List Nat"
+In other words, in order to determine the result type, we need to **evaluate** the function.
+
+### Overloading Functions
+
+#### Exercise: Implement the function *inc* for incrementing values of type Single b.
+
+```Idris
+inc : (b : Bool) -> Single b -> Single b
+inc True x        = x + 1
+inc False []      = []
+inc False (x::xs) = x+1::inc False xs
+```
+Basically, this function maps Single b into a list. 
