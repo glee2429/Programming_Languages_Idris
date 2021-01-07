@@ -101,7 +101,16 @@ eqNat _ _ = False
 ```Idris 
 eqList : Eq a => List a -> List a -> Bool
 eqList [] [] = True
-eqList (x::xs) (y::ys) = x == y && eqList xs ys 
+eqList (x::xs) (y::ys) = x==y && eqList xs ys 
 eqList _ _ = False
 ```
+#### Exercise 3: Define the Idris function *eqVect* for comparing two vectors of values.
+Think about the *type* of the eqVect!
 
+```Idris
+eqVect : Eq z => Vect n a -> Vect n a -> Bool
+eqVect [] [] = True
+eqVect (x::xs) (y::ys) = x==y && eqVect xs ys
+```
+
+Leverage that the two vectors should be equal in length, so we don't have to consider that case. Then, we need just two cases to think about. First, when the lists are empty, and then use "total function" by looking at the incrementally smaller chunks.
