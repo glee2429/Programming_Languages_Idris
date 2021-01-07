@@ -116,5 +116,5 @@ eqVect (x::xs) (y::ys) = x==y && eqVect xs ys
 Leverage that the two vectors should be equal in length, so we don't have to consider that case. Then, we need just two cases to think about. First, when the lists are empty, and then use "total function" by looking at the incrementally smaller chunks.
 
 #### Question
-Q: How does Idris evaluate the following expression? eqVect [2,3] [2,3,4]
-A: Produces a type error since eqVect function requires two vectors of the same length. (Vec is more restrictive than list.)
+- Q: How does Idris evaluate the following expression? eqVect [2,3] [2,3,4]
+- A: Produces a type error since eqVect function requires two vectors of the same length. (Vec is more restrictive than list.)
