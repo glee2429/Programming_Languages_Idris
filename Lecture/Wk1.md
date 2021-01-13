@@ -6,10 +6,10 @@ Idris is more expressive than Haskell. Two main differences include 1) Dependent
 Idris only accepts programs that terminate.
 As a result, Idris is useful for proof.
 
-#### Idris vs. Haskell:
-I. Idris: GADT (Generalized Algebraic Data Type) is more general.
+### Idris vs. Haskell:
+#### I. Idris Data Type: Idris GADT (Generalized Algebraic Data Type) is more general.
 
-e.g., Haskell
+e.g., Haskell 
 
 ```Haskell
 data Bool = True | False
@@ -19,7 +19,28 @@ data [a]    = [] | (:) a [a]
 data List a = [] | (::) a (List a)
 ```
 
-II. Idris: Functions can be applied to data types
+e.g., Idris has *complete* type of constructor. Type constructor is essentially like function on types.
+
+```Idris
+data Bool : Type where 
+     True : Bool 
+    False : Bool
+    
+data Nat : Type where
+   Z : Nat 
+   S : Nat -> Nat
+   
+data List : Type -> Type where 
+      [] : List a
+    (::) : a -> List a -> List 
+```
+
+
+#### II. Idris Functions: Functions can be applied to data types
+##### Implicit Argument in Idris 
+- optional
+- automatically inferred by type checker 
+- e.g., {a : Type}
 
 Exercise 1. Define the Idris function (!!) for extracting the nth element from a list (use zero for first element).
 
@@ -33,11 +54,26 @@ data Nat : Type where
        S : Nat -> Nat
 ```
 
-III. Total functions
+#### III. Total functions
 Always add the line below at the top of all Idris modules, since every program written in Idris should be terminated.
 ```Idris
 %default total
 ```
+- In Haskell, 
+```Haskell
+tail :: [a] -> [a]
+tail (_:xs) = xs
+
+head :: [a] -> a
+head (x:_) = x
+```
+- In Idris, cheating by just using _ is not allowed. You need to define each case.  
+```Idris 
+tail : {a : Type} -> List a -> List a
+tail [] = [] 
+tail (_ :: xs) = xs
+```
+
 ## Lecture 2 - Idris vs. Haskell (cont.) (01/07/2021)
 ### Type Constructor
 - Haskell: a function that maps types to types
@@ -65,7 +101,15 @@ In other words, in order to determine the result type, we need to **evaluate** t
 
 ### Overloading Functions
 
-#### Exercise 1: Implement the function *inc* for incrementing values of type Single b.
+```Idris 
+sum : (b : Bool) -> Single b -> Nat 
+sum True x        = x
+sum False []      = 0
+sum False (x::xs) = x + sum False xs
+```
+In the code block above, we can see that sum function takes values of different types (e.g., x, [])
+
+#### Exercise 2: Implement the function *inc* for incrementing values of type Single b.
 
 ```Idris
 inc : (b : Bool) -> Single b -> Single b
@@ -73,10 +117,10 @@ inc True x        = x + 1
 inc False []      = []
 inc False (x::xs) = x+1::inc False xs
 ```
-Basically, this function maps Single b into a list. 
+Basically, this function maps Single b into a list with varying types of input (e.g, x, [])
 
 ### Vectors
--- This is when "dependent type" makes things interesting 
+This is when "dependent type" makes things interesting.
 
 ```Idris
 data Vect : Nat -> Type -> Type where
