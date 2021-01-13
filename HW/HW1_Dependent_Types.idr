@@ -44,10 +44,10 @@ x = 4
 -------------------------------
 
 sum : (b : Bool) -> Single b -> Nat
-sum True x = x
-sum False [] = 0
+sum True  x       = x
+sum False []      = 0
 sum False (x::xs) = x + sum False xs
--- The function, 'sum,' consumes inputs of different types, either x or [...]
+-- The function, 'sum,' can take inputs of different types, either x or [...]
 
 
 -- > sum True 4
@@ -142,7 +142,7 @@ project {k=Z}   (S j) n     = n
 project {k=S i} Z     (n,_) = n
 project {k=S i} (S j) (_,t) = project {k=i} j t
 
--- > project 0 t2 
+-- > project 0 t2
 -- 2 : Nat
 -- > project 1 t2
 -- 3 : Nat
