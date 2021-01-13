@@ -3,3 +3,8 @@
 
 Resources
 - http://docs.idris-lang.org/en/latest/tutorial/starting.html
+
+##### Main Concept: 
+- Dependent Type; http://docs.idris-lang.org/en/latest/tutorial/views.html#with-and-proofs 
+- Implicit Parameter 
+- 
