@@ -101,7 +101,15 @@ In other words, in order to determine the result type, we need to **evaluate** t
 
 ### Overloading Functions
 
-#### Exercise 1: Implement the function *inc* for incrementing values of type Single b.
+```Idris 
+sum : (b : Bool) -> Single b -> Nat 
+sum True x        = x
+sum False []      = 0
+sum False (x::xs) = x + sum False xs
+```
+In the code block above, we can see that sum function takes values of different types (e.g., x, [])
+
+#### Exercise 2: Implement the function *inc* for incrementing values of type Single b.
 
 ```Idris
 inc : (b : Bool) -> Single b -> Single b
@@ -109,10 +117,10 @@ inc True x        = x + 1
 inc False []      = []
 inc False (x::xs) = x+1::inc False xs
 ```
-Basically, this function maps Single b into a list. 
+Basically, this function maps Single b into a list with varying types of input (e.g, x, [])
 
 ### Vectors
--- This is when "dependent type" makes things interesting 
+This is when "dependent type" makes things interesting.
 
 ```Idris
 data Vect : Nat -> Type -> Type where
