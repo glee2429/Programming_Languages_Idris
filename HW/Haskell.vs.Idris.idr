@@ -224,4 +224,4 @@ firstRow (xs :: _) = xs
 firstCol : Matrix n (S m) a -> Vect n a
 firstCol xss = map head xss
 -- firstCol []  = []
--- firstCol (xs::xss) = head xs::firstCol xss
+-- firstCol (xs::xss) = head xs::firstCol xss 

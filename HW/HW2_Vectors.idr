@@ -4,18 +4,30 @@ import Data.Vect
 
 %default total
 
--- (a) Define a function 'zipW' that works in the same way as 'zipWith' on lists.
+-- (a) Define a function 'zipW' that works in the same way
+-- as 'zipWith' on lists.
 zipW : (a -> b -> c) -> Vect n a -> Vect n b -> Vect n c
 zipW f []      []      = []
 zipW f (x::xs) (y::ys) = f x y :: zipW f xs ys
 
+-- Zip: it takes two lists and go through interweaving the elements.
+-- ZipWith: it doesn't put into a pair. ZipWith (+) -- arbitrary
+-- This is similar to mapping, but it maps on the two lists onto the same time.
 
--- (b) Define a function 'lst' that computes the last element of a vector
+-- f: the operator on the vectors.
+-- Sample output:
+-- > zipW (+) v1 v2
+-- [4, 6] : Vect 2 Int
+
+
+-- (b) Define a function 'lst' that computes
+-- the last element of a vector
 lst : Vect (S n) a -> a
 lst [x]        = x
 lst (x::y::xs) = lst (y::xs)
 
--- (c) Define a function 'initial' that removes the last element of a vector.
+-- (c) Define a function 'initial' that removes
+-- the last element of a vector.
 initial : Vect (S n) a -> Vect n a
 initial [_] = []
 initial (x::y::xs) = x::initial (y::xs)
@@ -32,6 +44,15 @@ s1 = "amanaplanacanalpanama"
 -- p1 : Vect 21 Char
 -- p1 = "amanaplanacanalpanama"
 
+v1 : Vect 2 Int
+v1 = [1, 2]
+
+v2 : Vect 2 Int
+v2 = [3, 4]
+
+v3 : Vect 2 Int
+v3 = [5, 6]
+
 p1 : Vect 2 Char
 p1 = ['a','b']
 
@@ -44,3 +65,15 @@ p3 = ['a','b','b','a']
 p4 : Vect 21 Char
 p4 = ['a','m','a','n','a','p','l','a','n','a',
       'c','a','n','a','l','p','a','n','a','m','a']
+
+-- > palin p1
+-- False : Bool
+--
+-- > palin p2
+-- True : Bool
+--
+-- > palin p3
+-- True : Bool
+--
+-- > palin p4
+-- True : Bool
