@@ -94,31 +94,31 @@ Tuple : Nat -> Type
 Tuple Z     = Nat
 Tuple (S n) = (Nat,Tuple n)
 
-t0 : Tuple 0
+t0 : Tuple Z
 t0 = 2
 
-t1 : Tuple 1
-t1 = (2,3)
+t3 : Tuple 2
+t3 = (2,3,4)
 
-t2 : Tuple 2
-t2 = (2,3,4)
+t4 : Tuple 3
+t4 = (2,3,4,5)
 
-t3 : Tuple 3
-t3 = (2,3,4,5)
-
--- (a) Define the function 'first' that returns the first element of a tuple of type 'Tuple'
+-- (a) Define the function 'first'
+-- that returns the first element of a tuple of type 'Tuple'
 first : Tuple k -> Nat
 first {k=Z}   n     = n
 first {k=S i} (n,_) = n
--- The function type definition, 'first' takes 'Tuple k' and returns Nat
+
+-- The function type definition,
+-- 'first' takes 'Tuple k' and returns Nat
 -- In each case, pattern match
 
--- > first t1
--- 2 : Nat
--- > first t2
--- 2 : Nat
+
 -- > first t3
 -- 2 : Nat
+-- > first t4
+-- 2 : Nat
+
 
 -- (b) Define the function 'lst' that returns the last element of a tuple type 'Tuple'
 lst : Tuple k -> Nat
@@ -128,23 +128,26 @@ lst {k=S i} (_,t) = lst {k=i} t
 -- In each case, pattern match.
 -- In the second case, decrement one step and recurse.
 
--- > lst t1
--- 3 : Nat
--- > lst t2
--- 4 : Nat
+
 -- > lst t3
+-- 4 : Nat
+-- > lst t4
 -- 5 : Nat
 
--- (c) Define the function 'project' that returns a component at a specific index from a tuple of type 'Tuple'
+
+-- (c) Define the function 'project'
+-- that returns a component at a specific index
+-- from a tuple of type 'Tuple'
+-- (Index starting from 0)
 project : Nat -> Tuple k -> Nat
 project {k=Z}   Z     n     = n
 project {k=Z}   (S j) n     = n
 project {k=S i} Z     (n,_) = n
 project {k=S i} (S j) (_,t) = project {k=i} j t
 
--- > project 0 t2
+-- > project 0 t3
 -- 2 : Nat
--- > project 1 t2
+-- > project 1 t3
 -- 3 : Nat
--- > project 2 t2
+-- > project 2 t3
 -- 4 : Nat

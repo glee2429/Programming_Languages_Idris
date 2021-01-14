@@ -19,18 +19,46 @@ zipW f (x::xs) (y::ys) = f x y :: zipW f xs ys
 -- > zipW (+) v1 v2
 -- [4, 6] : Vect 2 Int
 
+-- > zipW (+) [1,2] [2,3]
+-- [3, 5] : Vect 2 Integer
+--
+-- > zipW (*) [1,2] [2,3]
+-- [2, 6] : Vect 2 Integer
+--
+-- > zipW (=) [1,2] [2,3]
+-- [1 = 2, 2 = 3] : Vect 2 Type
+--
+-- > zipW (==) [1,2] [2,3]
+-- [False, False] : Vect 2 Bool
+--
+-- > zipW (==) [False, False] [True, False]
+-- [False, True] : Vect 2 Bool
 
--- (b) Define a function 'lst' that computes
--- the last element of a vector
+
+-- (b) Define a function 'lst' that
+-- computes the last element of a vector
 lst : Vect (S n) a -> a
 lst [x]        = x
 lst (x::y::xs) = lst (y::xs)
+-- When there's only one element in a vector, just return it
+-- Otherwise, peel off one at a time from the beginning of the vector
+
+-- > lst [1,2,3,9,4]
+-- 4 : Integer
+
 
 -- (c) Define a function 'initial' that removes
 -- the last element of a vector.
 initial : Vect (S n) a -> Vect n a
 initial [_] = []
 initial (x::y::xs) = x::initial (y::xs)
+
+-- > initial [1,2,3,9,4]
+-- [1, 2, 3, 9] : Vect 4 Integer
+--
+-- > initial [False, True, False]
+-- [False, True] : Vect 2 Bool
+
 
 -- (d) Define a function 'palin' that tests whether a vector is a palindrome.
 palin : Eq a => Vect n a -> Bool
