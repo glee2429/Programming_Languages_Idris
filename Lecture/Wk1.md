@@ -52,6 +52,11 @@ Exercise 1. Define the Idris function (!!) for extracting the nth element from a
 data Nat : Type where
        Z : Nat
        S : Nat -> Nat
+       
+(!!) : {a : Type} -> List a -> Nat -> Maybe a
+[]      !!  _    = Nothing 
+(x::_)  !!  Z    = Just x
+(_::xs) !! (S n) = xs !! n
 ```
 
 #### III. Total functions
