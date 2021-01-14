@@ -58,6 +58,7 @@ data Nat : Type where
 (x::_)  !!  Z    = Just x
 (_::xs) !! (S n) = xs !! n
 ```
+In the exercise above, (!!) function returns the result of 'Maybe a' and the reason why we designed this way is to meet the totality condition (Idris programs MUST terminate.)
 
 #### III. Total functions
 Always add the line below at the top of all Idris modules, since every program written in Idris should be terminated.
